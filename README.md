@@ -20,6 +20,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[ObjectConstructor.js](ObjectConstructor.js)** - The Object constructor creates an object wrapper.
 - **[Array.js](Array.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 - **[ArrayOperations.js](ArrayOperations.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+- **[FunctionExpression.js](FunctionExpression.js)** - A JavaScript function can also be defined using an expression.
 
 
 ---
