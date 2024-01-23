@@ -19,6 +19,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[Objects.js](Objects.js)** - Objects are variables too. But objects can contain many values.
 - **[ObjectConstructor.js](ObjectConstructor.js)** - The Object constructor creates an object wrapper.
 - **[Array.js](Array.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+- **[ArrayOperations.js](ArrayOperations.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 
 
 ---
