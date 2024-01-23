@@ -22,6 +22,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[ArrayOperations.js](ArrayOperations.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 - **[FunctionExpression.js](FunctionExpression.js)** - A JavaScript function can also be defined using an expression.
 - **[ArrowFunction.js](ArrowFunction.js)** - Arrow functions allow us to write shorter function syntax.
+- **[ErrorHandling.js](ErrorHandling.js)** - JavaScript try and catch. The try statement allows you to define a block of code to be tested for errors while it is being executed.
 
 
 ---
