@@ -26,3 +26,14 @@ for (let i = 0; i < fruits.length; i++) {
 // Slicing an array
 let citrus = fruits.slice(1, 3);
 console.log(citrus);
+
+// Splicing an array
+let removed = fruits.splice(1, 2, "Kiwi", "Papaya");
+console.log(removed);
+console.log(fruits);
+// When we are SPLICING, we add elements at the index where we are removing elements
+
+// Concatenating two arrays
+let vegetables = ["Tomato", "Potato"];
+let fruitsAndVegetables = fruits.concat(vegetables);
+console.log(fruitsAndVegetables);
