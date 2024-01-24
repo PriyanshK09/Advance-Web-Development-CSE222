@@ -24,6 +24,9 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[ArrowFunction.js](ArrowFunction.js)** - Arrow functions allow us to write shorter function syntax.
 - **[ErrorHandling.js](ErrorHandling.js)** - JavaScript try and catch. The try statement allows you to define a block of code to be tested for errors while it is being executed.
 
+**Jan 24, 2024**
+- **[Hoisting2.js](Hoisting2.js)** - JavaScript behavior where variables and function declarations are moved to the top of their scope before code execution.
+
 
 ---
 
