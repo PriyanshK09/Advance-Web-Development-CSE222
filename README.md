@@ -30,6 +30,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Jan 30, 2024**
 - **[Timer.js](Timer.js)** - JavaScript timing events allow you to execute code at specific time intervals.
 - **[setInterval.js](setInterval.js)** - The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds).
+- **[SynchronousCallbackFunc.js](SynchronousCallbackFunc.js)** - A synchronous callback is blocking. It means that the program execution waits for the callback to be called and executed.
 
 
 ---
