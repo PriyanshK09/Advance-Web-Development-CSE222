@@ -27,6 +27,10 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Jan 24, 2024**
 - **[Hoisting2.js](Hoisting2.js)** - JavaScript behavior where variables and function declarations are moved to the top of their scope before code execution.
 
+**Jan 30, 2024**
+- **[Timer.js](Timer.js)** - JavaScript timing events allow you to execute code at specific time intervals.
+- **[setInterval.js](setInterval.js)** - The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds).
+
 
 ---
 
