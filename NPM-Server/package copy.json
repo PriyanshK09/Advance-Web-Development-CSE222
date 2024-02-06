@@ -1,0 +1,12 @@
+{
+  "name": "firstnpm-server",
+  "version": "1.0.0",
+  "description": "This is a simple server that will be published to npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["server", "npm"],
+  "author": "PriyanshK09",
+  "license": "ISC"
+}
