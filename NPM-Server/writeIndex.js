@@ -15,11 +15,40 @@ const server = http.createServer((req, res) => {
             </body>
             </html>`;
 
-        fs.writeFile('FileSystem/index.html', message, (err) => {
+        const error = 
+            `<!DOCTYPE html>
+            <html>
+            <head>
+                <title>Node.js File System</title>
+                <style>
+                    body {
+                        background-color: #f2f2f2;
+                        font-family: Arial, sans-serif;
+                    }
+                    center {
+                        margin-top: 100px;
+                    }
+                    h1 {
+                        color: #333;
+                    }
+                    p {
+                        color: #666;
+                    }
+                </style>
+            </head>
+            <body>
+                <center>
+                    <h1>Error</h1>
+                    <p>There was an error writing the file.</p>
+                </center>
+            </body>
+            </html>`;
+
+        fs.writeFile('FileSyssstem/index.html', message, (err) => {
             if (err) {
                 console.error(err);
-                res.writeHead(500, {'Content-Type': 'text/plain'});
-                res.end('Internal Server Error');
+                res.writeHead(500, {'Content-Type': 'text/html'});
+                res.end(error);
                 return;
             }
             res.writeHead(200, {'Content-Type': 'text/html'});
