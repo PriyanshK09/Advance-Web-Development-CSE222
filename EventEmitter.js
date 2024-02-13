@@ -12,8 +12,18 @@ myEmitter.on('firstEvent', (arg1, arg2) => {    // Why arg1 and arg2 are importa
 // The on method is used to register an event listener for a specific event. 
 // Multiple listeners can be attached to the same event.
 
-myEmitter.emit('firstEvent', 'Hello', 'HI!');
+myEmitter.once('firstEvent', (arg1, arg2) => {
+    // Event handler logic
+    console.log('This event will be emitted only once', arg1, arg2);
+});
+
+// The once method is used to register an event listener that will be called only once.
+
 // The emit method is used to emit an event.
+
+for(var i=0; i<4; i++){
+    myEmitter.emit('firstEvent', 'Hello', 'HI!');
+}
 
 // Output
 // First event has been emitted arg1 arg2
