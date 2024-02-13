@@ -39,6 +39,10 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Feb 7, 2024**
 - **[NPM-Server](NPM-Server)** - Read and Write files using Node.js
 
+**Feb 13, 2024**
+- **[Stringify.js](Stringify.js)** - The JSON.stringify() method converts a JavaScript object or value to a JSON string.
+- **[Parse.js](Parse.js)** - The JSON.parse() method parses a JSON string, constructing the JavaScript value or object described by the string.
+
 ---
 
 ## Latest Update: January 23, 2024
