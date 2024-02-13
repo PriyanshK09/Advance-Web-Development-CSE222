@@ -43,6 +43,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[Stringify.js](Stringify.js)** - The JSON.stringify() method converts a JavaScript object or value to a JSON string.
 - **[Parse.js](Parse.js)** - The JSON.parse() method parses a JSON string, constructing the JavaScript value or object described by the string.
 - **[EventEmitter.js](EventEmitter.js)** - The EventEmitter is a module that facilitates communication/subscription between objects in Node.js.
+- **[RemoveEventListener.js](RemoveEventListener.js)** - The removeListener() method removes a listener from the listener array for the specified event.
 
 ---
 

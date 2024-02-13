@@ -19,11 +19,6 @@ myEmitter.once('firstEvent', (arg1, arg2) => {
 
 // The once method is used to register an event listener that will be called only once.
 
-// The emit method is used to emit an event.
-
 for(var i=0; i<4; i++){
-    myEmitter.emit('firstEvent', 'Hello', 'HI!');
+    myEmitter.emit('firstEvent', 'Hello', 'HI!'); // The emit method is used to emit an event.
 }
-
-// Output
-// First event has been emitted arg1 arg2
