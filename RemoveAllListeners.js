@@ -9,7 +9,7 @@ myEmitter.on('firstEvent', eventHandler);
 
 for(var i=0; i<5; i++){
     if (i === 3) {
-        myEmitter.removeAllListeners('firstEvent'); // The removeListener method is used to remove a listener from the event.
+        myEmitter.removeAllListeners('firstEvent'); // The removeAllListeners method is used to remove all listeners from the event.
     }
 
 myEmitter.emit('firstEvent', 'a', 'b');
