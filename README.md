@@ -16,7 +16,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Jan 23, 2024**
 - **[Loops.js](Loops.js)** - Loops are handy, if you want to run the same code over and over again, each time with a different value.
 - **[For-In-Loops.js](For-In-Loops.js)** - The JavaScript for/in statement loops through the properties of an object.
-- **[Objects.js](Objects.js)** - Objects are variables too. But objects can contain many values.
+- **[Object.js](Object.js)** - Objects are variables too. But objects can contain many values.
 - **[ObjectConstructor.js](ObjectConstructor.js)** - The Object constructor creates an object wrapper.
 - **[Array.js](Array.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 - **[ArrayOperations.js](ArrayOperations.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
