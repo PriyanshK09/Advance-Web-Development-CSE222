@@ -18,8 +18,8 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[For-In-Loops.js](For-In-Loops.js)** - The JavaScript for/in statement loops through the properties of an object.
 - **[Object.js](Object.js)** - Objects are variables too. But objects can contain many values.
 - **[ObjectConstructor.js](ObjectConstructor.js)** - The Object constructor creates an object wrapper.
-- **[Array.js](Array.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
-- **[ArrayOperations.js](ArrayOperations.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+- **[Arrays.js](Arrays.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+- **[ArrayOperation.js](ArrayOperation.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 - **[FunctionExpression.js](FunctionExpression.js)** - A JavaScript function can also be defined using an expression.
 - **[ArrowFunction.js](ArrowFunction.js)** - Arrow functions allow us to write shorter function syntax.
 - **[ErrorHandling.js](ErrorHandling.js)** - JavaScript try and catch. The try statement allows you to define a block of code to be tested for errors while it is being executed.
