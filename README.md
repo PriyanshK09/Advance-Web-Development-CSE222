@@ -16,10 +16,10 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Jan 23, 2024**
 - **[Loops.js](Loops.js)** - Loops are handy, if you want to run the same code over and over again, each time with a different value.
 - **[For-In-Loops.js](For-In-Loops.js)** - The JavaScript for/in statement loops through the properties of an object.
-- **[Object.js](Object.js)** - Objects are variables too. But objects can contain many values.
+- **[Objects.js](Objects.js)** - Objects are variables too. But objects can contain many values.
 - **[ObjectConstructor.js](ObjectConstructor.js)** - The Object constructor creates an object wrapper.
-- **[Arrays.js](Arrays.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
-- **[ArrayOperation.js](ArrayOperation.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+- **[Array.js](Array.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+- **[ArrayOperations.js](ArrayOperations.js)** - Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 - **[FunctionExpression.js](FunctionExpression.js)** - A JavaScript function can also be defined using an expression.
 - **[ArrowFunction.js](ArrowFunction.js)** - Arrow functions allow us to write shorter function syntax.
 - **[ErrorHandling.js](ErrorHandling.js)** - JavaScript try and catch. The try statement allows you to define a block of code to be tested for errors while it is being executed.
@@ -45,6 +45,9 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[EventEmitter.js](EventEmitter.js)** - The EventEmitter is a module that facilitates communication/subscription between objects in Node.js.
 - **[RemoveEventListener.js](RemoveEventListener.js)** - The removeListener() method removes a listener from the listener array for the specified event.
 - **[RemoveAllListeners.js](RemoveAllListeners.js)** - The removeAllListeners() method removes all listeners, or those of the specified event, from the listener array for the specified event.
+
+**Feb 20, 2024**
+- **[Buffer.js](Buffer.js)** - The Buffer class is a global class that can be accessed in an application without importing the buffer module.
 
 ---
 
