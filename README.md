@@ -48,6 +48,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 
 **Feb 20, 2024**
 - **[Buffer.js](Buffer.js)** - The Buffer class is a global class that can be accessed in an application without importing the buffer module.
+- **[BufferConcatenation.js](BufferConcatenation.js)** - The Buffer.concat() method is used to concatenate the given buffers and return a new buffer.
 
 ---
 
