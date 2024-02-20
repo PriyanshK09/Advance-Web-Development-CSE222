@@ -1,0 +1,2 @@
+This is the example file designed for the in-Class Assignment 1.
+Where we have to efficiently read the content of this file and stream it to other file named example2.txt

@@ -10,5 +10,13 @@ data.forEach(chunk => {
     writableStream.write(chunk);
 });
 
+writableStream.on('finish', () => {
+    console.log('Data has been written to the file');
+});
+
+writableStream.on('error', (err) => {
+    console.error('Error writing to the file', err);
+});
+
 // End the stream
 writableStream.end();
