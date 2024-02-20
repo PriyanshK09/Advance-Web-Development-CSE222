@@ -9,3 +9,4 @@ buf.write('Hello', 'utf-8');
 // Reading data from the buffer
 const data = buf.toString('utf-8'); 
 console.log(data); // OUTPUT : Hello
+console.log(buf); // OUTPUT : <Buffer 48 65 6c 6c 6f>
