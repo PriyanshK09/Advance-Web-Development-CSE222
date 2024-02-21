@@ -52,6 +52,10 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[Stream.js](Stream.js)** - Streams are objects that let you read data from a source or write data to a destination in continuous fashion.
 - **[writableStream.js](writableStream.js)** - The Writable stream is used to write data to a stream.
 
+**Feb 21, 2024**
+- **[ProcessingURL.js](ProcessingURL.js)** - The URL module splits up a web address into readable parts.
+
+
 ---
 
 ## Latest Update: January 23, 2024
