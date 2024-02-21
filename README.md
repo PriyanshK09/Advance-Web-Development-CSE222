@@ -54,6 +54,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 
 **Feb 21, 2024**
 - **[ProcessingURL.js](ProcessingURL.js)** - The URL module splits up a web address into readable parts.
+- **[ProcessingQueryString.js](ProcessingQueryString.js)** - The querystring module provides utilities for parsing and formatting URL query strings.
 
 
 ---
