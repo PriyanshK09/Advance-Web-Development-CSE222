@@ -10,7 +10,7 @@ zlib.gzip(input, (err, compressedData) => {
 
     console.log('Compressed Data: ', compressedData);
 
-    zlib.unzip(compressedData, (err, decompressedData) => {
+    zlib.gunzip(compressedData, (err, decompressedData) => {
         if (err) {
             console.error('Error decompressing data: ', err);
             return;
