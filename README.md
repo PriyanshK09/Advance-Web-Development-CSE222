@@ -58,6 +58,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 
 **Feb 27, 2024**
 - **[Zlib.js](Zlib.js)** - The zlib module provides compression and decompression functionalities through Gzip and Deflate/Inflate.
+- **[Class-NPM-Activity2](Class-NPM-Activity2)** - A simple project using Node.js
 
 
 ---
