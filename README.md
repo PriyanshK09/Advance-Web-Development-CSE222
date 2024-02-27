@@ -56,6 +56,9 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[ProcessingURL.js](ProcessingURL.js)** - The URL module splits up a web address into readable parts.
 - **[ProcessingQueryString.js](ProcessingQueryString.js)** - The querystring module provides utilities for parsing and formatting URL query strings.
 
+**Feb 27, 2024**
+- **[Zlib.js](Zlib.js)** - The zlib module provides compression and decompression functionalities through Gzip and Deflate/Inflate.
+
 
 ---
 
