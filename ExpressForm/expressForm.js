@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 app.get('/submit', (req, res) => {
     res.send('Form submitted successfully');
     let data = req.query;
+    console.log('New Entry Received')
     console.log('Name: ' + data.name);
     console.log('Email: ' + data.email);
     console.log('Rating: ' + data.rating);
