@@ -63,6 +63,7 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 
 **Mar 13, 2024**
 - **[MultipleMiddleware.js](MultipleMiddleware.js)** - Multiple middleware functions can be used in a single route.
+- **[MiddlewareClassAssignment.js](MiddlewareClassAssignment.js)** - A simple project using Express.js with request.log
 
 
 ---
