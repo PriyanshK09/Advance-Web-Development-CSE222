@@ -13,7 +13,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    const readStream = fs.createReadStream('public/index.html');
+    const readStream = fs.createReadStream('/home/priyansh/Desktop/Advance-Web-Development-CSE222/Class-Express-Activity2/index.html');
     readStream.pipe(res);
 });
 
