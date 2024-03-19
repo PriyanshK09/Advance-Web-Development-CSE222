@@ -66,6 +66,8 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 - **[MiddlewareClassAssignment.js](MiddlewareClassAssignment.js)** - A simple project using Express.js with request.log
 - **[Class-Express-Activity2](Class-Express-Activity2)** - A simple project using Express.js
 
+**Mar 19, 2024**
+- **[SocketIO](SocketIO)** - A simple project using Socket.IO
 
 ---
 
