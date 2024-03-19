@@ -6,29 +6,49 @@
     <title>Group Chat</title>
 </head>
 <body>
-    <ul id="list"></ul>
+    <h1>Group Chat</h1>
+    <div id="chat">
+        <div id="users"></div>
+        <ul id="messages"></ul>
+    </div>
     <form id="form">
-        <input type="text" id="input">
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="text" id="input" placeholder="Type your message">
         <button>Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket=io();
-        const form=document.getElementById('form');
-        const input=document.getElementById('input');
+        const socket = io();
+        const form = document.getElementById('form');
+        const nameInput = document.getElementById('name');
+        const input = document.getElementById('input');
+        const users = document.getElementById('users');
+        const messages = document.getElementById('messages');
 
-        form.addEventListener('submit',e => {
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            if(input.value){
-                socket.emit('chat message',input.value);
-                input.value='';
+            if (input.value) {
+                socket.emit('chat message', { name: nameInput.value, message: input.value });
+                input.value = '';
             }
         });
 
-        socket.on('chat message',msg => {
-            const item=document.createElement('li');
-            item.textContent=msg;
-            document.getElementById('list').appendChild(item);
+        socket.on('chat message', data => {
+            const item = document.createElement('li');
+            item.textContent = `${data.name}: ${data.message}`;
+            messages.appendChild(item);
+        });
+
+        socket.on('user joined', username => {
+            const userItem = document.createElement('div');
+            userItem.textContent = `${username} joined the chat`;
+            users.appendChild(userItem);
+        });
+
+        socket.on('user left', username => {
+            const userItem = document.createElement('div');
+            userItem.textContent = `${username} left the chat`;
+            users.appendChild(userItem);
         });
     </script>
 </body>

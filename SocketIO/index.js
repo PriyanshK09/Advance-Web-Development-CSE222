@@ -11,6 +11,6 @@ app.use(express.static(path.join(__dirname)));
 io.on('connection', (socket) => {
     console.log("A user has connected to server");
     socket.on('chat message', (msg) => {
-        io.emit('message', msg);
-    })
+        io.emit('chat message', msg); // Emit 'chat message' instead of 'message'
+    })    
 })
