@@ -35,20 +35,18 @@
 
         socket.on('chat message', data => {
             const item = document.createElement('li');
-            item.textContent = `${data.name}: ${data.message}`;
+            if (data.name === nameInput.value) {
+                item.textContent = `${data.name} (you): ${data.message}`;
+            } else {
+                item.textContent = `${data.name}: ${data.message}`;
+            }
             messages.appendChild(item);
         });
 
-        socket.on('user joined', username => {
-            const userItem = document.createElement('div');
-            userItem.textContent = `${username} joined the chat`;
-            users.appendChild(userItem);
-        });
-
-        socket.on('user left', username => {
-            const userItem = document.createElement('div');
-            userItem.textContent = `${username} left the chat`;
-            users.appendChild(userItem);
+        socket.on('user joined', name => {
+            const item = document.createElement('li');
+            item.textContent = `${data.name} has joined the chat`;
+            messages.appendChild(item);
         });
     </script>
 </body>
