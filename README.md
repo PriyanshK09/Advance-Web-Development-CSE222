@@ -69,6 +69,9 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Mar 19, 2024**
 - **[SocketIO](SocketIO)** - A simple project using Socket.IO
 
+**Apr 2, 2024**
+- **[Sequelize](Sequelize)** - A simple project using Sequelize
+
 ---
 
 ## Latest Update: January 23, 2024
