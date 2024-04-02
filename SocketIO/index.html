@@ -4,49 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        #chat {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #users {
+            margin-bottom: 10px;
+        }
+        #messages {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        #messages li {
+            margin-bottom: 5px;
+        }
+        #form {
+            display: flex;
+            margin-top: 10px;
+        }
+        #form input[type="text"] {
+            flex: 1;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        #form button {
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Group Chat</h1>
-    <div id="chat">
+    <div id="login">
+        <input type="text" id="name" placeholder="Enter your name">
+        <button id="loginButton">Enter Chat</button>
+    </div>
+    <div id="chat" style="display: none;">
         <div id="users"></div>
         <ul id="messages"></ul>
+        <form id="form">
+            <input type="text" id="input" placeholder="Type your message">
+            <button>Send</button>
+        </form>
     </div>
-    <form id="form">
-        <input type="text" id="name" placeholder="Enter your name">
-        <input type="text" id="input" placeholder="Type your message">
-        <button>Send</button>
-    </form>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
         const socket = io();
-        const form = document.getElementById('form');
+        const loginDiv = document.getElementById('login');
+        const chatDiv = document.getElementById('chat');
         const nameInput = document.getElementById('name');
         const input = document.getElementById('input');
         const users = document.getElementById('users');
         const messages = document.getElementById('messages');
 
-        form.addEventListener('submit', e => {
+        document.getElementById('loginButton').addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            if (name !== '') {
+                socket.emit('user joined', name);
+                loginDiv.style.display = 'none';
+                chatDiv.style.display = 'block';
+            }
+        });
+
+        document.getElementById('form').addEventListener('submit', e => {
             e.preventDefault();
             if (input.value) {
                 socket.emit('chat message', { name: nameInput.value, message: input.value });
                 input.value = '';
             }
-        });
-
-        socket.on('chat message', data => {
-            const item = document.createElement('li');
-            if (data.name === nameInput.value) {
-                item.textContent = `${data.name} (you): ${data.message}`;
-            } else {
-                item.textContent = `${data.name}: ${data.message}`;
-            }
-            messages.appendChild(item);
-        });
-
-        socket.on('user joined', name => {
-            const item = document.createElement('li');
-            item.textContent = `${data.name} has joined the chat`;
-            messages.appendChild(item);
         });
     </script>
 </body>
