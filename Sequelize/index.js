@@ -67,6 +67,27 @@ app.put('/todos/:id', (req, res) => {
 });
 // https://localhost:3000/todos/1 pe json mein task update krenge
 
+// DELETE endpoint to delete a todo
+app.delete('/todos/:id', (req, res) => {
+    const { id } = req.params;
+
+    Todo.findByPk(id)
+        .then((todo) => {
+            if (!todo) {
+                return res.status(404).json({ error: 'Todo not found' });
+            }
+            // Delete the todo
+            return todo.destroy();
+        })
+        .then(() => {
+            res.status(204).end();
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Internal server error' });
+        });
+});
+// https://localhost:3000/todos/1 pe json mein task delete krenge
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
