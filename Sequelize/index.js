@@ -27,6 +27,17 @@ app.get('/todos', (req, res) => {
         });
 });
 
+app.post('/todos',(req,res)=>{
+    const {title,completed}=req.body;
+    Todo.create({title,completed})
+    .then((todo)=>{
+        res.status(201).json(todo);
+    })
+    .catch((error)=>{
+        res.status(500).json({error:'Internal server error'});
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
