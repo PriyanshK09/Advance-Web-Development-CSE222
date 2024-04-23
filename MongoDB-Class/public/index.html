@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container my-5">
+    <h1>User Management</h1>
+
+    <div class="row my-4">
+      <div class="col-md-6">
+        <h2>Add User</h2>
+        <form id="addUserForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h2>Search Users</h2>
+        <form id="searchUserForm">
+          <div class="form-group">
+            <label for="searchEmail">Email</label>
+            <input type="email" class="form-control" id="searchEmail">
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <div id="searchResults"></div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-md-12">
+        <h2>User List</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="userList"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="message"></div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Add user form submission
+    document.getElementById('addUserForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await axios.post('/users', { name, email, password });
+        document.getElementById('message').innerHTML = '<div class="alert alert-success">User added successfully</div>';
+        displayUsers();
+      } catch (error) {
+        document.getElementById('message').innerHTML = '<div class="alert alert-danger">Error adding user</div>';
+      }
+    });
+
+    // Search users form submission
+    document.getElementById('searchUserForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('searchEmail').value;
+
+      try {
+        const response = await axios.get('/users', { params: { name, email } });
+        const users = response.data;
+        document.getElementById('searchResults').innerHTML = '';
+        users.forEach(user => {
+          const userElement = document.createElement('div');
+          userElement.textContent = `${user.name} - ${user.email}`;
+          document.getElementById('searchResults').appendChild(userElement);
+        });
+      } catch (error) {
+        document.getElementById('searchResults').innerHTML = '<div class="alert alert-danger">Error searching users</div>';
+      }
+    });
+
+    // Delete user function
+    async function deleteUser(id) {
+      try {
+        await axios.delete(`/users/${id}`);
+        document.getElementById('message').innerHTML = '<div class="alert alert-success">User deleted successfully</div>';
+        displayUsers();
+      } catch (error) {
+        document.getElementById('message').innerHTML = '<div class="alert alert-danger">Error deleting user</div>';
+      }
+    }
+
+    // Display all users function
+    async function displayUsers() {
+      try {
+        const response = await axios.get('/users');
+        const users = response.data;
+        const userList = document.getElementById('userList');
+        userList.innerHTML = '';
+        users.forEach(user => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>
+              <button class="btn btn-primary" onclick="editUser('${user._id}')">Edit</button>
+              <button class="btn btn-danger" onclick="deleteUser('${user._id}')">Delete</button>
+            </td>
+          `;
+          userList.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error displaying users:', error);
+      }
+    }
+
+    // Call displayUsers function when the page loads
+    window.onload = displayUsers;
+  </script>
+</body>
+</html>

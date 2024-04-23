@@ -1,54 +1,120 @@
-const express =require('express');
-const mongoose = require ('mongoose');
-const app =express();
-const Port = 3004;
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const port = 3000;
+
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/user_test_db')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Error connecting to MongoDB:', err));
+
+// Middleware
 app.use(express.json());
-mongoose.connect('mongodb://127.0.0.1:27017/user_management_db')
-.then(()=>console.log('connected to Mongodb'))
-.catch((err)=> console.log('Error connectiong to MongoDb:', err));
+app.use(express.static('public')); // Serve static files from the 'public' directory
 
-//user schema
+// User schema
 const userSchema = new mongoose.Schema({
-    name : String,
-    email : String,
-    password : String,
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
-
-app.post('/users', (req, res) => {
-    const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    });
-
-    newUser.save()
-        .then(() => res.status(201).json(newUser))
-        .catch(err => res.status(400).json({ message: err.message }));
-});
-
-// Example Body for Postman 
-// {
-//     "name": "John Doe",
-//     "email": "johndoe@yahoo.com",
-//     "password": "password"
-// }
-
-// How to Postman usage
-// 1. Open Postman
-// 2. Select POST
-// 3. Enter URL: http://localhost:3004/users
-// 4. Select Body
-// 5. Select Raw
-// 6. Select JSON
-// 7. Enter the example body above
-// 8. Click Send
 
 const User = mongoose.model('User', userSchema);
-app.get('/users',(req,res)=>{
-    User.find({})
-    .then(users => res.json(users))
-    .catch(err => res.status(500).json({message: err.message} ) );
+
+// Add user route
+app.post('/users', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    const user = new User({ name, email, password });
+    await user.save();
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
-app.listen(Port, ()=>{
-    console.log("Server is running on port", Port);
+
+// Update user route
+app.put('/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, password } = req.body;
+    const updatedUser = await User.findByIdAndUpdate(id, { name, email, password }, { new: true });
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Search users route
+app.get('/users', async (req, res) => {
+  try {
+    const { name, email } = req.query;
+    const query = {};
+    if (name) {
+      query.name = { $regex: new RegExp(name, 'i') };
+    }
+    if (email) {
+      query.email = { $regex: new RegExp(email, 'i') };
+    }
+    const users = await User.find(query);
+    res.json(users);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Update user route
+app.put('/users/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, email, password } = req.body;
+      const updatedUser = await User.findByIdAndUpdate(
+        id,
+        { name, email, password },
+        { new: true }
+      );
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+  
+  // Delete user route
+  app.delete('/users/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedUser = await User.findByIdAndDelete(id);
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+  
+  // Display all users route
+  app.get('/users', async (req, res) => {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  });  
+
+// Serve index.html
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
