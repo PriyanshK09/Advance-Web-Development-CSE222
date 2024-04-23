@@ -1,141 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>User Management</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border:#000000;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        button.update {
+            background-color: #008CBA;
+            color: white;
+        }
+
+        button.delete {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <div class="container my-5">
-    <h1>User Management</h1>
-
-    <div class="row my-4">
-      <div class="col-md-6">
-        <h2>Add User</h2>
+    <div class="container">
+        <h2>User Management System</h2>
+        <h3>Add User</h3>
         <form id="addUserForm">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Add User</button>
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Add User</button>
         </form>
-      </div>
-      <div class="col-md-6">
-        <h2>Search Users</h2>
-        <form id="searchUserForm">
-          <div class="form-group">
-            <label for="searchEmail">Email</label>
-            <input type="email" class="form-control" id="searchEmail">
-          </div>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-        <div id="searchResults"></div>
-      </div>
+        <hr>
+        <h3>Users</h3>
+        <ul id="userList"></ul>
     </div>
 
-    <div class="row my-4">
-      <div class="col-md-12">
-        <h2>User List</h2>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="userList"></tbody>
-        </table>
-      </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Function to fetch users and render them
+        function fetchAndRenderUsers() {
+            axios.get('/users')
+            .then(response => {
+                const users = response.data;
+                const userList = document.getElementById('userList');
+                userList.innerHTML = ''; // Clear existing list
+                users.forEach(user => {
+                    const li = document.createElement('li');
+                    const userInfo = document.createElement('div');
+                    userInfo.textContent = `${user.name} - ${user.email}`;
+                    userInfo.style.marginRight = '10px'; // Add margin between email and update button
 
-    <div id="message"></div>
+                    // Create update button
+                    const updateButton = document.createElement('button');
+                    updateButton.textContent = 'Update';
+                    updateButton.classList.add('update'); // Add class for styling
+                    updateButton.addEventListener('click', () => {
+                        const newName = prompt('Enter new name:');
+                        const newEmail = prompt('Enter new email:');
+                        const newPassword = prompt('Enter new password:');
+                        updateUser(user._id, newName, newEmail, newPassword);
+                    });
+                    li.appendChild(userInfo);
+                    li.appendChild(updateButton);
 
-  </div>
+                    // Create delete button
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.classList.add('delete'); // Add class for styling
+                    deleteButton.addEventListener('click', () => {
+                        if (confirm('Are you sure you want to delete this user?')) {
+                            deleteUser(user._id);
+                        }
+                    });
+                    li.appendChild(deleteButton);
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    // Add user form submission
-    document.getElementById('addUserForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
+                    userList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
 
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+        // Add event listener to the form for adding users
+        document.getElementById('addUserForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-      try {
-        const response = await axios.post('/users', { name, email, password });
-        document.getElementById('message').innerHTML = '<div class="alert alert-success">User added successfully</div>';
-        displayUsers();
-      } catch (error) {
-        document.getElementById('message').innerHTML = '<div class="alert alert-danger">Error adding user</div>';
-      }
-    });
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-    // Search users form submission
-    document.getElementById('searchUserForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
-
-      const email = document.getElementById('searchEmail').value;
-
-      try {
-        const response = await axios.get('/users', { params: { name, email } });
-        const users = response.data;
-        document.getElementById('searchResults').innerHTML = '';
-        users.forEach(user => {
-          const userElement = document.createElement('div');
-          userElement.textContent = `${user.name} - ${user.email}`;
-          document.getElementById('searchResults').appendChild(userElement);
+            axios.post('/users', { name, email, password })
+            .then(response => {
+                console.log('User added successfully:', response.data);
+                fetchAndRenderUsers(); // Refresh user list
+            })
+            .catch(error => console.error('Error:', error));
         });
-      } catch (error) {
-        document.getElementById('searchResults').innerHTML = '<div class="alert alert-danger">Error searching users</div>';
-      }
-    });
 
-    // Delete user function
-    async function deleteUser(id) {
-      try {
-        await axios.delete(`/users/${id}`);
-        document.getElementById('message').innerHTML = '<div class="alert alert-success">User deleted successfully</div>';
-        displayUsers();
-      } catch (error) {
-        document.getElementById('message').innerHTML = '<div class="alert alert-danger">Error deleting user</div>';
-      }
-    }
+        // Function to update user data
+        function updateUser(userId, newName, newEmail, newPassword) {
+            axios.put(`/users/${userId}`, { name: newName, email: newEmail, password: newPassword })
+            .then(response => {
+                console.log('User updated successfully:', response.data);
+                fetchAndRenderUsers(); // Refresh user list
+            })
+            .catch(error => console.error('Error:', error));
+        }
 
-    // Display all users function
-    async function displayUsers() {
-      try {
-        const response = await axios.get('/users');
-        const users = response.data;
-        const userList = document.getElementById('userList');
-        userList.innerHTML = '';
-        users.forEach(user => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>
-              <button class="btn btn-primary" onclick="editUser('${user._id}')">Edit</button>
-              <button class="btn btn-danger" onclick="deleteUser('${user._id}')">Delete</button>
-            </td>
-          `;
-          userList.appendChild(row);
-        });
-      } catch (error) {
-        console.error('Error displaying users:', error);
-      }
-    }
+        // Function to delete user data
+        function deleteUser(userId) {
+            axios.delete(`/users/${userId}`)
+            .then(response => {
+                console.log('User deleted successfully:', response.data);
+                fetchAndRenderUsers(); // Refresh user list
+            })
+            .catch(error => console.error('Error:', error));
+        }
 
-    // Call displayUsers function when the page loads
-    window.onload = displayUsers;
-  </script>
+        // Fetch and render users on page load
+        window.onload = fetchAndRenderUsers;
+    </script>
 </body>
 </html>

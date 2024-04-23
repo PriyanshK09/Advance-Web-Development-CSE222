@@ -72,6 +72,9 @@ Welcome to my Advance Web Development repository! This repository contains JavaS
 **Apr 2, 2024**
 - **[Sequelize](Sequelize)** - A simple project using Sequelize
 
+**Apr 12 to Apr 23, 2024**
+- **[MongoDB-Class](MongoDB-Class)** - A simple project of UMS using MongoDB
+
 ---
 
 ## Latest Update: January 23, 2024
